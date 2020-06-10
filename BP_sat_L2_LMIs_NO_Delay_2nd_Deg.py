@@ -49,17 +49,11 @@ W_u = 0.01  # Input weight
 
 
 # Constants
-delta_1 = 1e-12  # constant in dynamics to avoid singularity in numerical optimization
-# inequality = 1e-8  # Inequality coefficient
-# tau_min = 100 # rho_1, Lag.
-# tau_max = 200
+delta_1 = 1e-12  
 v_1 = .06
 
-# K_min = .45  # rho_2, Sens.
-# K_max = .66
 v_2 = 2e-4
 
-# theta_min = 0.01  # rho_3, delay
 theta_max = 8
 v_3 = .5
 theta_prime = 1
@@ -238,14 +232,6 @@ def main(ii):
             L_K_theta_tilde_theta_5 = cp.Variable((n_omega, n_p))
             L_K_theta_tilde_theta_6 = cp.Variable((n_omega, n_p))
 
-            # A_d_1_tilde_theta_0 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_1 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_2 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_3 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_4 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_5 = cp.Variable(n_p, n_p)
-            # A_d_1_tilde_theta_6 = cp.Variable(n_p, n_p)
-
             L_y_theta_tilde_theta_0 = cp.Variable((n_omega, n_y))
             L_y_theta_tilde_theta_1 = cp.Variable((n_omega, n_y))
             L_y_theta_tilde_theta_2 = cp.Variable((n_omega, n_y))
@@ -294,7 +280,6 @@ def main(ii):
             G_1_hat_theta_5 = cp.Variable((n_u, 2*n_p + n_omega))
             G_1_hat_theta_6 = cp.Variable((n_u, 2*n_p + n_omega))
 
-            #LMI = [gamma_sq >= inequality]
             LMI += [cp.bmat([
                 [R, S1],
                 [S1.T, R]])>>0]
@@ -515,7 +500,7 @@ def main(ii):
     prob = cp.Problem(cp.Minimize(gamma_sq), LMI)
     print(ii)
     print(cp.installed_solvers())
-    prob.solve(solver=cp.SCS, verbose=True, eps=1e-1) # max_iters=5000,
+    prob.solve(solver=cp.SCS, verbose=True, max_iters=5000, eps=1e-1) # 
     # prob.solve(solver=cp.MOSEK, verbose=True, mosek_params={mosek.dparam.intpnt_co_tol_pfeas: 1.0e-1,
     #                                                         mosek.iparam.intpnt_solve_form: mosek.solveform.primal})
     print("optimal value with:", prob.value)
@@ -523,13 +508,3 @@ def main(ii):
     print("gamma=", np.sqrt(gamma_sq.value))
 
 main(ii)
-
-
-# x = cp.Variable()
-#
-# # An infeasible problem.
-# prob = cp.Problem(cp.Minimize(x), [x >= 1, x <= 0])
-# prob.solve(solver=cp.MOSEK)
-# prob.solve()
-# print("status:", prob.status)
-# print("optimal value", prob.value)
