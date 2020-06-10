@@ -17,3 +17,6 @@ more versatile in terms of performance and computational time, specifically for 
 my problem.
 
 Please feel free to contact me with any questions.
+
+For details please take a look at my recent papers.
+https://scholar.google.com/citations?user=ydv1fIcAAAAJ&hl=en
