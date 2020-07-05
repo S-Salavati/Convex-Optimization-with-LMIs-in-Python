@@ -12,7 +12,7 @@ the files are subject to copyright and not provided.
 
 In these codes, I have computed the matrix variable parameters for the output feedback control of automated drug infusion. The
 controller is designed to satisfy the LMI constraints of the induced L_2-norm characterization of the closed-loop system, AKA
-H_\infty control in linear time-invariant (LTI) systems. CVXPY is equipped with MOSEK and SCS solvers.
+H_\infty control in linear time-invariant (LTI) systems. CVXPY is equipped with the MOSEK and SCS solvers.
 
 Please feel free to contact me with any questions.
 
