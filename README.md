@@ -1,5 +1,6 @@
 # Convex-Optimization-with-LMIs-in-Python
 Solving Semidefinite Programming (SDP) and Linear Matrix Inequalities (LMIs) with CVXPY 
+
 This code intends to compute the optimal numerical solution to convex constraints in terms of linear matrix inequalities (LMIs)
 for mean arterial blood pressure (MAP) regulation in clinical resuscitation for critical hypotensive patients.
 
